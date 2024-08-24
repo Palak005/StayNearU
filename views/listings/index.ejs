@@ -1,0 +1,211 @@
+<% layout('/layouts/boilerplate') %>
+
+<style>
+    #top{
+        display: flex;
+        align-items: center;
+    }
+
+    #form_toggle{
+        height: 2.5rem;
+        border: 2px solid black;
+        border-radius: 10px;
+        padding: 1rem;
+        margin-left: 5rem;
+        margin-top: 2rem;
+        display: flex;
+        align-items: center;
+        font-size: 3 rem;
+
+    }
+    .filter i{
+        font-size: 1.7rem;
+    }
+    #filters{
+        display: flex;
+        max-height: 100px;
+        max-width: 60vw;
+        overflow-x: auto;
+    }
+
+    #filters::-webkit-scrollbar{
+        display: none;
+    }
+
+    .filter{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-right: 3rem;
+        margin-top: 2rem;
+        font-size: 12px;
+        opacity: 0.7;
+    }
+
+    .filter:hover{
+        opacity: 1;
+        /* color: black; */
+    }
+
+    .gst{
+        visibility: hidden;
+    }
+
+</style>
+<div id="top">
+    <div id="filters">
+ 
+        <div class="filter">
+            <i class="ri-coupon-2-fill"></i>Icons
+        </div> 
+    
+        <div class="filter">
+            <i class="ri-fire-fill"></i>Trending
+        </div>
+    
+        <div class="filter">
+            <i class="ri-sailboat-fill"></i>Boats
+         </div>
+    
+         <div class="filter">
+            <i class="ri-hotel-bed-fill"></i>Rooms 
+         </div>
+    
+         <div class="filter">
+            <i class="ri-snowflake-line"></i>Arctic 
+         </div>
+    
+         <div class="filter">
+            <i class="ri-key-2-fill"></i>New 
+         </div>
+    
+         <div class="filter">
+            <i class="ri-cactus-fill"></i>Deserts 
+         </div>
+    
+         <div class="filter">
+            <i class="ri-wheelchair-fill"></i>Adapted 
+         </div>
+    
+         <div class="filter">
+            <i class="ri-flower-fill"></i>Views
+         </div>
+    
+         <div class="filter">
+            <i class="ri-landscape-fill"></i>Mountains 
+         </div>
+    
+         <div class="filter">
+            <i class="ri-riding-fill"></i>Cycling
+         </div>
+     
+         <div class="filter">
+            <i class="ri-planet-fill"></i>Alien
+          </div>
+     
+          <div class="filter">
+            <i class="ri-restaurant-2-fill"></i>Luxe
+          </div>
+     
+          <div class="filter">
+            <i class="ri-coupon-2-fill"></i>Icons
+        </div> 
+    
+        <div class="filter">
+            <i class="ri-fire-fill"></i>Trending
+        </div>
+    
+        <div class="filter">
+            <i class="ri-sailboat-fill"></i>Boats
+         </div>
+    
+         <div class="filter">
+            <i class="ri-hotel-bed-fill"></i>Rooms 
+         </div>
+    
+         <div class="filter">
+            <i class="ri-snowflake-line"></i>Arctic 
+         </div>
+    
+         <div class="filter">
+            <i class="ri-key-2-fill"></i>New 
+         </div>
+    
+         <div class="filter">
+            <i class="ri-cactus-fill"></i>Deserts 
+         </div>
+    
+         <div class="filter">
+            <i class="ri-wheelchair-fill"></i>Adapted 
+         </div>
+    
+         <div class="filter">
+            <i class="ri-flower-fill"></i>Views
+         </div>
+    
+         <div class="filter">
+            <i class="ri-landscape-fill"></i>Mountains 
+         </div>
+    
+         <div class="filter">
+            <i class="ri-riding-fill"></i>Cycling
+         </div>
+     
+         <div class="filter">
+            <i class="ri-planet-fill"></i>Alien
+          </div>
+     
+          <div class="filter">
+            <i class="ri-restaurant-2-fill"></i>Luxe
+          </div>
+    </div>
+    
+    <div id="form_toggle">
+        <div class="form-check form-switch form-check-reverse">
+            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+            <label class="form-check-label" for="flexSwitchCheckDefault">Display Total After Taxes</label>
+          </div>
+    </div>
+</div>
+
+<div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 row-cols-xs-1 mt-5">
+    <%for(let listing of allListings){%>
+        <a href="listings/<%= listing._id %>">
+            <div class="card col listing-card">
+                <img src="<%=listing.image.url%>" class="card-img-top" alt="..."  style="height: 20rem;">
+                <div class="card-img-overlay">
+                </div>
+                    
+                <div class="card-body">
+                    <p class="card-text">
+                        <b><%= listing.title %></b> <br>
+                        &#8377;<%= listing.price.toLocaleString("en-IN") %> night
+                        <i class="gst">&nbsp &nbsp+18% gst</i>
+                    </p>
+                </div>
+            </div>
+        </a>
+    <%}%>       
+</div>
+
+<script>
+    let toggle = document.querySelector("#flexSwitchCheckDefault");
+    let count = 0;
+    toggle.addEventListener('click', function() {
+        let gst = document.getElementsByClassName('gst');
+        count++;
+        for(info of gst){
+            if(count%2 == 1){
+                info.style.visibility = "visible";
+            }
+            else{
+                info.style.visibility = "hidden";
+            }
+            
+        }
+        console.log(gst);
+    })
+</script>
+
+    
+
